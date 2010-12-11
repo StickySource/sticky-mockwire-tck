@@ -30,15 +30,11 @@ public class FieldBlessingTest {
 	@Inject
 	IsolatedTestManifest context;
 
-	@Before
-	public void setup() {
-		Mockwire.isolate(this);
-	}
-
 	@Test
 	public void atBless() {
+	  Mockwire.isolate(this);
 	  assertThat(context.hasRegisteredType(Autowirable.class)).isTrue();
-	  assertThat(autowirable).isNotNull();
 	  assertThat(injected).isNotNull();
+	  assertThat(autowirable).isNotNull();
 	}
 }
