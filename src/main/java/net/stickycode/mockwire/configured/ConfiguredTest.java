@@ -12,13 +12,14 @@
  */
 package net.stickycode.mockwire.configured;
 
+import static org.assertj.core.api.StrictAssertions.assertThat;
+
 import org.junit.Test;
 
+import net.stickycode.mockwire.InvalidConfigurationException;
 import net.stickycode.mockwire.Mockwire;
 import net.stickycode.mockwire.MockwireConfigured;
 import net.stickycode.mockwire.UnderTest;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ConfiguredTest {
 
@@ -29,31 +30,18 @@ public class ConfiguredTest {
     ConfiguredObject configured;
   }
 
-  @MockwireConfigured
-  public class PropertiesConfigured {
-
-    @UnderTest
-    ConfiguredObject configured;
-  }
-
-  @MockwireConfigured
-  public class InlineConfigured {
-
-    @UnderTest("a=inline")
-    ConfiguredObject configured;
-  }
-  
-  public class InlineConfiguredNeedsFeature {
-    
-    @UnderTest("a=inline")
-    ConfiguredObject configured;
-  }
-
   @Test
   public void inlineConfigured() {
     StringConfigured testInstance = new StringConfigured();
     Mockwire.isolate(testInstance);
     assertThat(testInstance.configured.a).isEqualTo("b");
+  }
+
+  @MockwireConfigured
+  public class PropertiesConfigured {
+
+    @UnderTest
+    ConfiguredObject configured;
   }
 
   @Test
@@ -63,16 +51,42 @@ public class ConfiguredTest {
     assertThat(testInstance.configured.a).isEqualTo("bfromfile");
   }
 
+  @MockwireConfigured
+  public class InlineConfigured {
+
+    @UnderTest("a=inline")
+    ConfiguredObject configured;
+  }
+
   @Test
   public void testObjectConfigured() {
     InlineConfigured testInstance = new InlineConfigured();
     Mockwire.isolate(testInstance);
     assertThat(testInstance.configured.a).isEqualTo("inline");
   }
-  
+
+  public class InlineConfiguredNeedsFeature {
+
+    @UnderTest("a=inline")
+    ConfiguredObject configured;
+  }
+
   @Test(expected=MockwireConfiguredIsRequiredToTestConfiguredCodeException.class)
   public void checkInlineConfigurationExcepts() {
     InlineConfiguredNeedsFeature testInstance = new InlineConfiguredNeedsFeature();
+    Mockwire.isolate(testInstance);
+  }
+
+  @MockwireConfigured
+  public class InlineConfiguredNeedsBroken {
+
+    @UnderTest("broken")
+    ConfiguredObject configured;
+  }
+
+  @Test(expected=InvalidConfigurationException.class)
+  public void checkInlineConfigurationBrokenExcepts() {
+    InlineConfiguredNeedsBroken testInstance = new InlineConfiguredNeedsBroken();
     Mockwire.isolate(testInstance);
   }
 }
