@@ -12,13 +12,14 @@
  */
 package net.stickycode.mockwire.configured;
 
-import static org.fest.assertions.Assertions.assertThat;
-import net.stickycode.mockwire.MockwireConfigured;
-import net.stickycode.mockwire.UnderTest;
-import net.stickycode.mockwire.junit4.MockwireRunner;
+import static org.assertj.core.api.StrictAssertions.assertThat;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import net.stickycode.mockwire.MockwireConfigured;
+import net.stickycode.mockwire.UnderTest;
+import net.stickycode.mockwire.junit4.MockwireRunner;
 
 @RunWith(MockwireRunner.class)
 @MockwireConfigured
@@ -26,7 +27,7 @@ public class InlineConfiguredTest {
 
   @UnderTest("a=inline")
   ConfiguredObject target;
-  
+
   @Test
   public void inline() {
     assertThat(target.a).isEqualTo("inline");

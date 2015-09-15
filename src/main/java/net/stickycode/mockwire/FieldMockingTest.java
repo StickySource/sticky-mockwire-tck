@@ -12,16 +12,15 @@
  */
 package net.stickycode.mockwire;
 
+import static org.assertj.core.api.StrictAssertions.assertThat;
+
 import javax.inject.Inject;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import net.stickycode.bootstrap.ComponentContainer;
 import net.stickycode.mockwire.junit4.MockwireRunner;
-
-import static org.fest.assertions.Assertions.assertThat;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockwireRunner.class)
 public class FieldMockingTest {
@@ -33,23 +32,22 @@ public class FieldMockingTest {
   private Mockable injected;
 
   @Inject
-  IsolatedTestManifest context;
-  
+  ComponentContainer context;
+
 //  FIXME with a proper lifecycle
 //  @Before
-//  public void before() {
-//    assertThat(mockable).isNotNull();
-//  }
+  public void before() {
+    assertThat(mockable).isNotNull();
+  }
 
   @Test
   public void atMock() {
-    // XXX assertThat(context.hasRegisteredType(Mockable.class)).isTrue();
+    assertThat(context.canFind(Mockable.class)).isTrue();
     assertThat(injected).isNotNull();
     assertThat(mockable).isNotNull();
   }
 
   public void verifyMock() {
-    when(injected.callme()).thenReturn(true);
     assertThat(injected.callme()).isEqualTo(true);
   }
 }

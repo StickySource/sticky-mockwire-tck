@@ -12,9 +12,12 @@
  */
 package net.stickycode.mockwire;
 
+import java.util.List;
 
 public interface Mockable {
 
   boolean callme();
+
+  List<String> list();
 
 }

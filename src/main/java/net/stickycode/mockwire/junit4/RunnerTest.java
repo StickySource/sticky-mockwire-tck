@@ -8,7 +8,7 @@ import net.stickycode.mockwire.Controlled;
 import net.stickycode.mockwire.Mockable;
 import net.stickycode.mockwire.UnderTest;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(MockwireRunner.class)
 public class RunnerTest {

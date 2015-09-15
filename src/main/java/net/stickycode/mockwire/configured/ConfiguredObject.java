@@ -18,4 +18,5 @@ public class ConfiguredObject {
 
   @Configured
   String a;
+
 }

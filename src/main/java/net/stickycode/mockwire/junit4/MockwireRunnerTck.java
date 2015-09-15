@@ -19,6 +19,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
     MockwireRunnerIsolationTest.class,
+    SingleLifecyleTest.class,
     RunnerTest.class })
 public class MockwireRunnerTck {
 

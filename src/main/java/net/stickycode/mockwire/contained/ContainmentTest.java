@@ -8,7 +8,7 @@ import net.stickycode.mockwire.junit4.MockwireRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(MockwireRunner.class)
 @MockwireContainment("net.stickycode.mockwire.contained")

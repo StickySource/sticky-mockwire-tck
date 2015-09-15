@@ -12,11 +12,13 @@
  */
 package net.stickycode.mockwire;
 
+import static org.assertj.core.api.StrictAssertions.assertThat;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
 
-import static org.fest.assertions.Assertions.assertThat;
+import net.stickycode.bootstrap.ComponentContainer;
 
 public class FieldBlessingTest {
 
@@ -27,12 +29,12 @@ public class FieldBlessingTest {
 	private Autowirable injected;
 
 	@Inject
-	IsolatedTestManifest context;
-	
+	ComponentContainer context;
+
 	@Test
 	public void underTest() {
 	  Mockwire.isolate(this);
-	  assertThat(context.hasRegisteredType(Autowirable.class)).isTrue();
+	  assertThat(context.canFind(Autowirable.class)).isTrue();
 	  assertThat(injected).isNotNull();
 	  assertThat(autowirable).isNotNull();
 	}

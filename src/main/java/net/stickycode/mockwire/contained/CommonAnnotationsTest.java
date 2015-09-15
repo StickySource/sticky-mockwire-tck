@@ -12,6 +12,8 @@
  */
 package net.stickycode.mockwire.contained;
 
+import static org.assertj.core.api.StrictAssertions.assertThat;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,8 +23,6 @@ import org.junit.runner.RunWith;
 import net.stickycode.mockwire.MockwireConfigured;
 import net.stickycode.mockwire.UnderTest;
 import net.stickycode.mockwire.junit4.MockwireRunner;
-
-import static org.fest.assertions.Assertions.assertThat;
 
 @RunWith(MockwireRunner.class)
 @MockwireConfigured("beanWithLifecycle.value=something")

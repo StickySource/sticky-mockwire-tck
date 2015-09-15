@@ -12,14 +12,15 @@
  */
 package net.stickycode.mockwire;
 
-import javax.inject.Inject;
+import static org.assertj.core.api.StrictAssertions.assertThat;
 
-import net.stickycode.exception.NullParameterException;
+import javax.inject.Inject;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.fest.assertions.Assertions.assertThat;
+import net.stickycode.bootstrap.ComponentContainer;
+import net.stickycode.exception.NullParameterException;
 
 public abstract class AbstractIsolationTest {
 
@@ -36,20 +37,20 @@ public abstract class AbstractIsolationTest {
 	private AutowirableWithDependencies injected;
 
 	@Inject
-	IsolatedTestManifest context;
+	ComponentContainer context;
 
 	@Before
 	public void setup() {
-		assertThat(d).isNull();
-		assertThat(m).isNull();
-		assertThat(a).isNull();
+	  assertThat(d).isNull();
+	  assertThat(m).isNull();
+	  assertThat(a).isNull();
 	}
 
 	@Test
 	public void objectsAreAutowired() {
-	  assertThat(d).isNotNull();
-	  assertThat(m).isNotNull();
-	  assertThat(a).isNotNull();
+	  assertThat(d).as("UnderTest container fail").isNotNull();
+	  assertThat(m).as("Controller Mocker fail").isNotNull();
+	  assertThat(a).as("UnderTest container fail").isNotNull();
 
 		assertThat(injected).isNotNull();
 		assertThat(injected.getMock()).isNotNull();

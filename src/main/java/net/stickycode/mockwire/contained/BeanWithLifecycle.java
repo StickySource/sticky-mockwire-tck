@@ -12,7 +12,7 @@
  */
 package net.stickycode.mockwire.contained;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.StrictAssertions.assertThat;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -54,8 +54,7 @@ public class BeanWithLifecycle {
   public void destroy() {
     assertThat(value).isNotNull();
     assertThat(initialised).isTrue();
-    assertThat(destroyed).isFalse();
+    assertThat(destroyed).as("container was stopped twice?").isFalse();
     destroyed = true;
-    System.out.println("Destroyed");
   }
 }

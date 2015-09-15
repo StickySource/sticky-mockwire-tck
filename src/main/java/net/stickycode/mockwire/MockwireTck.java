@@ -12,23 +12,19 @@
  */
 package net.stickycode.mockwire;
 
-import net.stickycode.mockwire.inheritance.InheritanceTest;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
+
+import net.stickycode.mockwire.inheritance.InheritanceTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({
     FieldBlessingTest.class,
     FieldMockingTest.class,
-    MethodBlessingTest.class,
-    UnderTestMethodFactoryTest.class,
     UncontrolledInjectionTest.class,
-    MethodFactoryAsDependencyTest.class,
     UnblessableTypesTest.class,
-    InheritanceTest.class,
-    DependentMethodBlessingTest.class })
+    InheritanceTest.class })
 public class MockwireTck {
 
 }

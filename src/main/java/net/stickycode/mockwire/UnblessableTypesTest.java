@@ -18,7 +18,6 @@ public class UnblessableTypesTest {
 
   private class NonStaticType {}
   private class NonStaticTypeTest {
-    @SuppressWarnings("unused")
     @Uncontrolled NonStaticType hidden;
   }
 
@@ -30,7 +29,6 @@ public class UnblessableTypesTest {
 
   private interface Super {}
   private class CantBlessInterfacesTest {
-    @SuppressWarnings("unused")
     @Uncontrolled Super iface;
   }
 
@@ -40,12 +38,4 @@ public class UnblessableTypesTest {
     Mockwire.isolate(new CantBlessInterfacesTest());
   }
 
-  private class CantBlessVoidMethodsTest {
-    @SuppressWarnings("unused")
-    @Uncontrolled void voidMethod() {};
-  }
-  @Test(expected=VoidMethodsCannotBeUsedAsFactoriesForCodeUnderTestException.class)
-  public void checkBlessVoidMethodsError() {
-    Mockwire.isolate(new CantBlessVoidMethodsTest());
-  }
 }

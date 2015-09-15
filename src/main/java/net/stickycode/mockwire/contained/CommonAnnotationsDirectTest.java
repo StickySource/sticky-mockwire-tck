@@ -13,14 +13,14 @@
 package net.stickycode.mockwire.contained;
 
 
+import static org.assertj.core.api.StrictAssertions.assertThat;
+
 import org.junit.Test;
 
 import net.stickycode.mockwire.Mockwire;
 import net.stickycode.mockwire.MockwireConfigured;
-import net.stickycode.mockwire.MockwireContext;
+import net.stickycode.mockwire.MockwireContainer;
 import net.stickycode.mockwire.UnderTest;
-
-import static org.fest.assertions.Assertions.assertThat;
 
 @MockwireConfigured("beanWithLifecycle.value=something")
 public class CommonAnnotationsDirectTest {
@@ -30,7 +30,7 @@ public class CommonAnnotationsDirectTest {
 
   @Test
   public void cycle() {
-    MockwireContext context = Mockwire.isolate(this);
+    MockwireContainer context = Mockwire.isolate(this);
     assertThat(target.initialised).isTrue();
     assertThat(target.value).isEqualTo("something");
 
