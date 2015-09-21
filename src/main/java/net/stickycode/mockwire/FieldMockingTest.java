@@ -28,14 +28,16 @@ public class FieldMockingTest {
   @Controlled
   private Mockable mockable;
 
-  @Inject
-  private Mockable injected;
+  // XXX so this is hard to do with jmockit as the value cant' exist until the expectation
+  // and the use case is spurious
+  // @Inject
+  // private Mockable injected;
 
   @Inject
   ComponentContainer context;
 
-//  FIXME with a proper lifecycle
-//  @Before
+  // FIXME with a proper lifecycle
+  // @Before
   public void before() {
     assertThat(mockable).isNotNull();
   }
@@ -43,11 +45,11 @@ public class FieldMockingTest {
   @Test
   public void atMock() {
     assertThat(context.canFind(Mockable.class)).isTrue();
-    assertThat(injected).isNotNull();
+//    assertThat(injected).isNotNull();
     assertThat(mockable).isNotNull();
   }
 
   public void verifyMock() {
-    assertThat(injected.callme()).isEqualTo(true);
+//    assertThat(injected.callme()).isEqualTo(true);
   }
 }
