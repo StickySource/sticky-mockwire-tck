@@ -89,4 +89,23 @@ public class ConfiguredTest {
     InlineConfiguredNeedsBroken testInstance = new InlineConfiguredNeedsBroken();
     Mockwire.isolate(testInstance);
   }
+
+
+  @MockwireConfigured("configuredObject.a=b")
+  public class SuperclassConfigured {
+
+  }
+
+  public class SubclassConfigured {
+    @UnderTest
+    ConfiguredObject configured;
+  }
+
+  @Test
+  public void testSubclassIsConfiguredWithSuperclassConfiguration() {
+    SubclassConfigured testInstance = new SubclassConfigured();
+    Mockwire.isolate(testInstance);
+
+    assertThat(testInstance.configured.a).isEqualTo("b");
+  }
 }
