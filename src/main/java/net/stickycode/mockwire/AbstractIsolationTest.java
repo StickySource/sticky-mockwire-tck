@@ -12,7 +12,7 @@
  */
 package net.stickycode.mockwire;
 
-import static org.assertj.core.api.StrictAssertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.inject.Inject;
 
@@ -24,42 +24,42 @@ import net.stickycode.exception.NullParameterException;
 
 public abstract class AbstractIsolationTest {
 
-	@Controlled
-	private Mockable m;
+  @Controlled
+  private Mockable m;
 
-	@UnderTest
-	private Autowirable a;
+  @UnderTest
+  private Autowirable a;
 
-	@UnderTest
-	private AutowirableWithDependencies d;
+  @UnderTest
+  private AutowirableWithDependencies d;
 
-	@Inject
-	private AutowirableWithDependencies injected;
+  @Inject
+  private AutowirableWithDependencies injected;
 
-	@Inject
-	ComponentContainer context;
+  @Inject
+  ComponentContainer context;
 
-	@Before
-	public void setup() {
-	  assertThat(d).isNull();
-	  assertThat(m).isNull();
-	  assertThat(a).isNull();
-	}
+  @Before
+  public void setup() {
+    assertThat(d).isNull();
+    assertThat(m).isNull();
+    assertThat(a).isNull();
+  }
 
-	@Test
-	public void objectsAreAutowired() {
-	  assertThat(d).as("UnderTest container fail").isNotNull();
-	  assertThat(m).as("Controller Mocker fail").isNotNull();
-	  assertThat(a).as("UnderTest container fail").isNotNull();
+  @Test
+  public void objectsAreAutowired() {
+    assertThat(d).as("UnderTest container fail").isNotNull();
+    assertThat(m).as("Controller Mocker fail").isNotNull();
+    assertThat(a).as("UnderTest container fail").isNotNull();
 
-		assertThat(injected).isNotNull();
-		assertThat(injected.getMock()).isNotNull();
-		assertThat(injected.getAutowirable()).isNotNull();
-	}
+    assertThat(injected).isNotNull();
+    assertThat(injected.getMock()).isNotNull();
+    assertThat(injected.getAutowirable()).isNotNull();
+  }
 
-	@Test(expected = NullParameterException.class)
-	public void nullParameterIsIllegal() {
-		Mockwire.isolate(null);
-	}
+  @Test(expected = NullParameterException.class)
+  public void nullParameterIsIllegal() {
+    Mockwire.isolate(null);
+  }
 
 }

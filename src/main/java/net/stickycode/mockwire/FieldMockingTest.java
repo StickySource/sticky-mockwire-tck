@@ -12,10 +12,11 @@
  */
 package net.stickycode.mockwire;
 
-import static org.assertj.core.api.StrictAssertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.inject.Inject;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -28,28 +29,26 @@ public class FieldMockingTest {
   @Controlled
   private Mockable mockable;
 
-  // XXX so this is hard to do with jmockit as the value cant' exist until the expectation
-  // and the use case is spurious
-  // @Inject
-  // private Mockable injected;
+  @Inject
+  private Mockable injected;
 
   @Inject
   ComponentContainer context;
 
-  // FIXME with a proper lifecycle
-  // @Before
+  @Before
   public void before() {
-    assertThat(mockable).isNotNull();
+    assertThat(mockable).isNull();
   }
 
   @Test
   public void atMock() {
+    assertThat(context).isNotNull();
     assertThat(context.canFind(Mockable.class)).isTrue();
-//    assertThat(injected).isNotNull();
+    assertThat(injected).isNotNull();
     assertThat(mockable).isNotNull();
   }
 
   public void verifyMock() {
-//    assertThat(injected.callme()).isEqualTo(true);
+    assertThat(injected.callme()).isEqualTo(true);
   }
 }

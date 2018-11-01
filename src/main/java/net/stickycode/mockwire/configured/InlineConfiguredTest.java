@@ -12,7 +12,7 @@
  */
 package net.stickycode.mockwire.configured;
 
-import static org.assertj.core.api.StrictAssertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

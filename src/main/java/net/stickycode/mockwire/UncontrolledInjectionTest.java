@@ -13,10 +13,11 @@
 package net.stickycode.mockwire;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import net.stickycode.mockwire.junit4.MockwireRunner;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import net.stickycode.mockwire.junit4.MockwireRunner;
 
 @RunWith(MockwireRunner.class)
 public class UncontrolledInjectionTest {
@@ -34,6 +35,7 @@ public class UncontrolledInjectionTest {
   public void check() {
     assertThat(uncontrolled).isNull();
     assertThat(controlled).isNotNull();
+    assertThat(underTest.getMock()).isNotNull();
     assertThat(underTest.getAutowirable()).isNotNull();
   }
 }

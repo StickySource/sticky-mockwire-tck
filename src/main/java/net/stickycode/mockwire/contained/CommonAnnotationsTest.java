@@ -12,7 +12,7 @@
  */
 package net.stickycode.mockwire.contained;
 
-import static org.assertj.core.api.StrictAssertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.After;
 import org.junit.AfterClass;

@@ -12,7 +12,7 @@
  */
 package net.stickycode.mockwire.contained;
 
-import static org.assertj.core.api.StrictAssertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -22,10 +22,12 @@ import net.stickycode.stereotype.configured.PostConfigured;
 import net.stickycode.stereotype.configured.PreConfigured;
 
 public class BeanWithLifecycle {
+
   @Configured
   String value;
 
   boolean initialised = false;
+
   boolean destroyed = false;
 
   @PostConstruct
